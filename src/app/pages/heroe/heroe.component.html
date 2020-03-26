@@ -1,0 +1,38 @@
+<h1>Heroe <small> {{heroe.name}}</small></h1>
+<hr>
+<div class='row text-right'>
+    <div class='col'>
+        <button routerLink='/heroes' class='btn btn-danger'><i class='fa fa-arrow-left'></i>Regresar</button>
+    </div>
+</div>
+
+<div class='row animated fadeIn faster'>
+    <div class='col'>
+        <form (ngSubmit)='guardar(f)' #f='ngForm'>
+            <div class="form-group">
+                <label>Firebase ID</label>
+                <input [(ngModel)]='heroe.id' class='form-control' type='text' name='id' placeholder="Firebase ID" disabled='disabled'>
+                <small class='form-text text-muted'>Se genera solo</small>
+            </div>
+            <div class='form-group'>
+                <label>Name</label>
+                <input [(ngModel)]='heroe.name' name='name' type='text' class='form-control' placeholder="Name of theHeroe" required>
+            </div>
+            <div class='form-group'>
+                <label>Power</label>
+                <input [(ngModel)]='heroe.power' name='power' type='text' class='form-control' placeholder="Power of the Heroe" required>
+            </div>
+            <div class='form-group'>
+                <label>State</label>
+                <br>
+                <button required class='btn btn-outline-success w-50' *ngIf='heroe.state ' (click)='heroe.state = false'><i class='fas fa-smile-wink '></i> Live</button>
+                <button required class='btn btn-outline-danger w-50' *ngIf='!heroe.state ' (click)='heroe.state = true'><i class='fas fa-dizzy '></i> Died</button>
+            </div>
+
+            <div class='from-group text-center'>
+                <button type='submit' class='btn btn-primary w-25'><i class='fa fa-save'></i> Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<h1>Lista de Heroes</h1>
+<hr>
+
+<div class='row'>
+    <div class='col text-right'>
+        <button class='btn btn-primary' routerLink='/heroe/nuevo'><i class='fa fa-plus '></i> Agrager</button>
+    </div>
+</div>
+<table *ngIf='!cargando && heroes.length > 0' class="table mt-3 animated fadeIn faster">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Power</th>
+            <th scope="col">State</th>
+            <th scope="col">Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let h of heroes, let i=index'>
+            <th scope="row">{{i+1}}</th>
+            <td>{{h.name}}</td>
+            <td>{{h.power}}</td>
+            <td><label *ngIf='h.state' class=' badge badge-success'>Live</label>
+                <label *ngIf='!h.state' class='badge badge-danger'>Died</label></td>
+            <td>
+                <button [routerLink]="['/heroe',h.id]" class='btn btn-info m-2'> <i class='fas fa-user-edit'></i></button>
+                <button (click)='borrarHer(h,i)' class='btn btn-danger'> <i class="fa fa-trash" ></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf='!cargando && heroes.length === 0' class='alert alert-warning text-center mt-3 animated fadeIn faster'>
+    <h4 class='alert-heading'>No hay registro</h4>
+    <p><i class='fa fa fa-exclamation fa-2x'></i></p>
+</div>
+
+<div *ngIf='cargando' class='alert alert-primary text-center mt-3 animated fadeIn faster'>
+    <h4 class='alert-heading'>Cargando</h4>
+    <p><i class='fa fa fa-sync-alt  fa-spin fa-2x'></i></p>
+    <p>Espere por favor</p>
+</div>
